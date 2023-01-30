@@ -1,4 +1,4 @@
-# Getting Started
+npm run server# Getting Started
 
 0. Hover on the icons above right to see the tooltips. Click the icon that says _Open Preview to the side_ to see this markdown rendered as it was intended to be viewed. Close this file (**readme.md**). The preview will remain open.
 
