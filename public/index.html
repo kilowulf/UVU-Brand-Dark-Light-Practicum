@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html class="dark" lang="en-US">
   <head>
     <title>Student Log</title>
     <meta charset="UTF-8" />
@@ -8,14 +8,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-      body {
-        background-image: url('./img/green_tiny_squares.png');
-      }
-    </style>
+    <style></style>
   </head>
   <body
     class="
+      bg-[#4BA23F]
+      dark:
+      bg-[#275D38]
       rounded
       max-w-md
       mx-auto
@@ -23,22 +22,17 @@
       shadow-md
       overflow-hidden
       md:max-w-2xl
-      background-image:
-      url('./img/green_tiny_squares.png')
-      bg-gradient-to-t
-      from-[#275D38]
-      to-[#78BE1F]
-      border-[#78BE1F]
+      bg-[url('./img/Timp.png')] bg-cover bg-center bg-opacity-75
       font-helvetica
       text-base
-      border-10
       m-10
       p-10
       box-border
       bg-no-repeat
     "
   >
-    <form class="text-centered rounded bg-white border border-gray-400 p-12">
+  <nav class="bg-">
+    <form class="text-centered rounded bg-[#275D38] bg-opacity-80 border p-12">
       <select
         class="bg-white border border-gray-400 p-4 w-full text-black mb-3"
         aria-label="Select Course"
