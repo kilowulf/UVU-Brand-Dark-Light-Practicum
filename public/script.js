@@ -1,5 +1,3 @@
-
-
 $(document).ready(function () {
   // Disable Add Log button until logs are displayed
   $('#addLog').prop('disabled', true).addClass('opacity-20');
@@ -98,7 +96,7 @@ $(document).ready(function () {
               // set h3 header
               // Update the innerHTML to show the chosen UVU ID
               $('#uvuIdDisplay').removeClass('d-none');
-              $('#uvuIdDisplay').addClass('pt-8 text-xl font-bold');
+              $('#uvuIdDisplay').addClass('pt-8 text-white font-[RajdSemi]');
               $('#uvuIdDisplay').show();
               $('#uvuIdDisplay').html(`Student Logs for ${log.uvuId}`);
               // Create a new list item
@@ -106,9 +104,7 @@ $(document).ready(function () {
 
               // Create the log date element
               const logDate = $(`<div><small>${log.date}</small></div>`);
-              $('small').addClass(
-                'text-lg font-semibold font-sans border-x-gray-300'
-              );
+              $('small').addClass('text-lg font-bold border-x-gray-300');
 
               // Create the log text element
               const logText = $(`<pre><p>${log.text}</p></pre>`);
@@ -128,7 +124,7 @@ $(document).ready(function () {
               'rounded p-2 bg-gray-100 border-2 border-solid block'
             );
             $('div small').addClass(
-              'rounded text-base font-medium font-sans border-x-gray-300'
+              'rounded text-base font-medium border-x-gray-300'
             );
             $('pre').addClass(
               'rounded font-sans border-solid border-inherit whitespace-pre-wrap'
@@ -219,7 +215,7 @@ $(document).ready(function () {
                 // set h3 header
                 // Update the innerHTML to show the chosen UVU ID
                 $('#uvuIdDisplay').removeClass('d-none');
-                $('#uvuIdDisplay').addClass('pt-8 text-xl font-bold');
+                $('#uvuIdDisplay').addClass('pt-8 text-xl font-[`RajdBold`]');
                 $('#uvuIdDisplay').show();
                 $('#uvuIdDisplay').html(`Student Logs for ${log.uvuId}`);
                 // Create a new list item
@@ -228,7 +224,7 @@ $(document).ready(function () {
                 // Create the log date element
                 const logDate = $(`<div><small>${log.date}</small></div>`);
                 $('small').addClass(
-                  'text-lg font-semibold font-sans border-x-gray-300'
+                  'text-lg font-[`RajdSemi`] border-x-gray-300'
                 );
 
                 // Create the log text element
@@ -248,11 +244,9 @@ $(document).ready(function () {
               $('.log-entries li').addClass(
                 'rounded p-2 bg-gray-100 border-2 border-solid block'
               );
-              $('div small').addClass(
-                'rounded text-base font-medium font-sans border-x-gray-300'
-              );
+              $('div small').addClass('rounded text-base border-x-gray-300');
               $('pre').addClass(
-                'rounded font-sans border-solid border-inherit whitespace-pre-wrap'
+                'rounded font-[`RajdReg`] border-solid border-inherit whitespace-pre-wrap'
               );
 
               // re-activate addLog button

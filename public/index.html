@@ -10,8 +10,30 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
       @font-face {
-        font-family: Rajdhani;
-        src: url('')
+        font-family: RajdLite;
+        src: url('./fonts/rajdhani-light-webfont.woff2'),
+          url('./fonts/rajdhani-light-webfont.woff');
+      }
+      @font-face {
+        font-family: RajdReg;
+        src: url('./fonts/rajdhani-regular-webfont.woff2'),
+          url('./fonts/rajdhani-regular-webfont.woff');
+      }
+      @font-face {
+        font-family: RajdSemi;
+        src: url('./fonts/rajdhani-semibold-webfont.woff2'),
+          url('./fonts/rajdhani-semibold-webfont.woff');
+      }
+
+      @font-face {
+        font-family: RajdBold;
+        src: url('./fonts/rajdhani-bold-webfont.woff2'),
+          url('./fonts/rajdhani-bold-webfont.woff');
+      }
+      @font-face {
+        font-family: RajdMed;
+        src: url('./fonts/rajdhani-medium-webfont.woff2'),
+          url('./fonts/rajdhani-medium-webfont.woff');
       }
     </style>
   </head>
@@ -27,8 +49,8 @@
       shadow-md
       overflow-hidden
       md:max-w-2xl
-      bg-[url('./img/Timp.png')] bg-cover bg-center bg-opacity-100
-      font-helvetica
+      bg-[url('./img/Timp.png')] bg-cover bg-center bg-opacity-75
+      font-['RajdReg']
       text-base
       m-10
       p-10
@@ -65,7 +87,7 @@
         <option selected value="">Choose Courses</option></select
       ><br />
 
-      <label class="font-medium" id="uvuIdLbl" for="uvuId">UVU ID</label><br />
+      <label class="text-white" id="uvuIdLbl" for="uvuId">UVU ID</label><br />
 
       <input
         class="rounded bg-white border-2 border-gray-400 p-2.5 pb-4 mb-3 w-full"
@@ -79,7 +101,7 @@
         Student Logs for 10234567
       </h3>
       <ul class="rounded log-entries mb-4 py-2" id="logs" data-cy="logs"></ul>
-      <label class="text-white font-medium">New Log</label><br />
+      <label class="text-white">New Log</label><br />
       <textarea
         class="rounded bg-gray-200 border border-gray-300 mb-1 p-10 w-full"
         id="logEntry"
@@ -91,13 +113,13 @@
 
       <button
         class="
-          bg-blue-500
-          hover:bg-blue-700
+          bg-[#A7A8AA]
+          hover:bg-[#00843D]
           text-white
-          font-bold
+          font-['RajdBold']
           py-2
           px-4
-          rounded
+          rounded-full
           focus:outline-none
         "
         id="addLog"
