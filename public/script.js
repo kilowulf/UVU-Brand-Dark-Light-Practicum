@@ -1,4 +1,68 @@
 $(document).ready(function () {
+  //Dark mode
+  let darkMode = localStorage.getItem('darkMode') === 'true';
+
+  // Check if dark mode has been set by user
+  // button for changing
+
+  if (localStorage.getItem('darkMode') !== null) {
+    darkMode = localStorage.getItem('darkMode') === 'true';
+  } else {
+    // Check if system is in dark mode
+    const osPref =
+      window.matchMedia &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches;
+    darkMode = osPref;
+  }
+
+  // Add class to body based on dark mode setting
+  // darkMode
+
+  const toggleDarkMode = () => {
+    darkMode = !darkMode;
+
+    localStorage.setItem('darkMode', darkMode);
+    if (darkMode) {
+      $('body').addClass('bg-black text-white');
+    } else {
+      $('body').removeClass('bg-black text-white');
+    }
+    console.log(`User Pref: ${darkMode ? 'Dark mode' : 'Light mode'}`);
+    console.log(
+      `Browser Pref: ${
+        window.matchMedia('(prefers-color-scheme: dark)').matches
+          ? 'Dark mode'
+          : 'Light mode'
+      }`
+    );
+    console.log(
+      `OS Pref: ${
+        window.matchMedia('(prefers-color-scheme: dark)').matches
+          ? 'Dark mode'
+          : 'Light mode'
+      }`
+    );
+  };
+
+  // check if dark mode has been set
+  // assign styling
+  if (!darkMode) {
+    $('body')
+      .removeClass(
+        'bg-[url(`./img/UVUHorizontalWhite-0011.png`)] bg-cover bg-top'
+      )
+      .addClass(
+        'bg-[#f2f9e9] text-white bg-[url(`./img/UVUHorizontalGreen-0009.png`)]'
+      );
+    $('#form')
+      .removeClass('bg-[#275D38] ')
+      .addClass('bg-[#6f937a] bg-cover bg-top bg-[length:400px_150px]');
+    //$('#btn-toggle').removeClass('text-white').addClass('text-[#275d38]');
+  }
+
+  $('#btn-toggle').click(toggleDarkMode);
+  $('#btn-toggle').text(darkMode ? 'Light Mode' : 'Dark Mode');
+
   // Disable Add Log button until logs are displayed
   $('#addLog').prop('disabled', true).addClass('opacity-20');
   $('#logEntry').prop('disabled', true).addClass('opacity-20');

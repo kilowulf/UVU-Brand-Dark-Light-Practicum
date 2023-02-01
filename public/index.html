@@ -60,14 +60,7 @@
     "
   >
     <header class="bg-green py-6 px-4">
-      <div
-        class="
-          container
-          mx-auto
-          bg-[url('./img/uvu_logo_images.png')]
-          bg-contain bg-center bg-no-repeat
-        "
-      ></div>
+      <div class="mx-auto"></div>
     </header>
     <form
       class="
@@ -78,6 +71,7 @@
         border
         p-12
       "
+      id="form"
     >
       <select
         class="bg-white border border-gray-400 p-4 w-full text-black mb-3"
@@ -115,9 +109,10 @@
 
       <button
         class="
-          bg-[#A7A8AA]
-          hover:bg-[#00843D]
-          text-white
+          bg-[#e8e8e8]
+          hover:bg-[#1e482c]
+          text-[#275d38]
+          hover:text-[#fff]
           font-['RajdBold']
           py-2
           px-4
@@ -130,6 +125,12 @@
       >
         Add Log
       </button>
+      <div>
+        <button
+          class="text-xs text-center px-3 text-white"
+          id="btn-toggle"
+        ></button>
+      </div>
     </form>
     <script src="script.js"></script>
   </body>
