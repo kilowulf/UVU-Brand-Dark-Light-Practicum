@@ -23,9 +23,15 @@ $(document).ready(function () {
 
     localStorage.setItem('darkMode', darkMode);
     if (darkMode) {
-      $('body').addClass('bg-black text-white');
+      $('body').addClass(
+        `bg-[url('./img/UVUHorizontalGreen-0009.png')] bg-[#f2f9e9] text-white`
+      );
+      $('#form').addClass(
+        'bg-[#6f937a] bg-cover bg-top bg-[length:400px_150px]'
+      );
     } else {
-      $('body').removeClass('bg-black text-white');
+      $('body').removeClass('bg-[url(`./img/UVUHorizontalWhite-0011.png`)]');
+      $('#form').removeClass('bg-[#275D38]');
     }
     console.log(`User Pref: ${darkMode ? 'Dark mode' : 'Light mode'}`);
     console.log(
@@ -46,17 +52,17 @@ $(document).ready(function () {
 
   // check if dark mode has been set
   // assign styling
-  if (!darkMode) {
+  if (darkMode) {
     $('body')
-      .removeClass(
-        'bg-[url(`./img/UVUHorizontalWhite-0011.png`)] bg-cover bg-top'
-      )
+      .removeClass('bg-[url(`./img/UVUHorizontalWhite-0011.png`)]')
       .addClass(
-        'bg-[#f2f9e9] text-white bg-[url(`./img/UVUHorizontalGreen-0009.png`)]'
+        `bg-[url('./img/UVUHorizontalGreen-0009.png')] bg-[#f2f9e9] text-white`
       );
     $('#form')
-      .removeClass('bg-[#275D38] ')
-      .addClass('bg-[#6f937a] bg-cover bg-top bg-[length:400px_150px]');
+      .removeClass('bg-[#275D38]')
+      .addClass(
+        'bg-[#6f937a] bg-cover bg-top bg-[length:400px_150px] text-[#275d38]'
+      );
     //$('#btn-toggle').removeClass('text-white').addClass('text-[#275d38]');
   }
 
