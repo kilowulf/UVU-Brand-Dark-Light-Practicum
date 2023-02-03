@@ -1,39 +1,43 @@
-$(document).ready(function () {
-  //Dark mode
-  let darkMode = localStorage.getItem('darkMode') === 'true';
+document.addEventListener('DOMContentLoaded', function () {
+  //Light mode as default
+  let darkMode = false;
 
   // Check if dark mode has been set by user
-  // button for changing
-
   if (localStorage.getItem('darkMode') !== null) {
     darkMode = localStorage.getItem('darkMode') === 'true';
   } else {
-    // Check if system is in dark mode
-    const osPref =
+    // Check if browser is in dark mode
+    const browserPref =
       window.matchMedia &&
       window.matchMedia('(prefers-color-scheme: dark)').matches;
-    darkMode = osPref;
+
+    if (browserPref) {
+      darkMode = true;
+    } else {
+      // Check if system is in dark mode
+      const osPref =
+        window.matchMedia &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches;
+      darkMode = osPref;
+    }
   }
 
   // Add class to body based on dark mode setting
-  // darkMode
-
   const toggleDarkMode = () => {
     darkMode = !darkMode;
-
     localStorage.setItem('darkMode', darkMode);
-    if (darkMode) {
-      $('body').addClass(
-        `bg-[url('./img/UVUHorizontalGreen-0009.png')] bg-[#f2f9e9] text-white`
-      );
-      $('#form').addClass(
-        'bg-[#6f937a] bg-cover bg-top bg-[length:400px_150px]'
-      );
-    } else {
-      $('body').removeClass('bg-[url(`./img/UVUHorizontalWhite-0011.png`)]');
-      $('#form').removeClass('bg-[#275D38]');
-    }
-    console.log(`User Pref: ${darkMode ? 'Dark mode' : 'Light mode'}`);
+    // if (darkMode) {
+    //   $('body').addClass(
+    //     `bg-[url('./img/UVUHorizontalGreen-0009.png')] bg-[#f2f9e9] text-white`
+    //   );
+    //   $('#form').addClass(
+    //     'bg-[#6f937a] bg-cover bg-top bg-[length:400px_150px]'
+    //   );
+    // } else {
+    //   $('body').removeClass('bg-[url(`./img/UVUHorizontalWhite-0011.png`)]');
+    //   $('#form').removeClass('bg-[#275D38]');
+    // }
+    console.log(`User Pref: ${darkMode ? 'Light mode' : 'Dark mode'}`);
     console.log(
       `Browser Pref: ${
         window.matchMedia('(prefers-color-scheme: dark)').matches
@@ -63,11 +67,10 @@ $(document).ready(function () {
       .addClass(
         'bg-[#6f937a] bg-cover bg-top bg-[length:400px_150px] text-[#275d38]'
       );
-    //$('#btn-toggle').removeClass('text-white').addClass('text-[#275d38]');
   }
-
+  // toggle mode button
   $('#btn-toggle').click(toggleDarkMode);
-  $('#btn-toggle').text(darkMode ? 'Light Mode' : 'Dark Mode');
+  $('#btn-toggle').text(!darkMode ? 'Light Mode' : 'Dark Mode');
 
   // Disable Add Log button until logs are displayed
   $('#addLog').prop('disabled', true).addClass('opacity-20');
@@ -77,20 +80,18 @@ $(document).ready(function () {
   $('select').addClass('rounded');
 
   // Make UVU ID visible only after course selection has been made
-  $('#uvuId').hide();
-  $('#uvuIdLbl').hide();
-  $('#uvuIdDisplay').hide();
+  $('#uvuId, #uvuIdLbl, #uvuIdDisplay, #addLog, #logEntry, #logLbl').hide();
   $('#course').change(function () {
-    if ($(this).val() != '') {
+    if ($(this).val() !== '') {
       $('#uvuId').attr(
         'placeholder',
         'Enter a valid UVU ID        eg. 10234567'
       );
-      $('#uvuId').show();
-      $('#uvuIdLbl').show();
+      $('#uvuId, #uvuIdLbl').show();
     } else {
-      $('#uvuId').hide();
-      $('#uvuIdLbl').hide();
+      $(
+        '#uvuId, #uvuIdLbl, #uvuIdDisplay, #addLog, #logEntry, #logLbl, #logs'
+      ).hide();
     }
   });
 
@@ -106,6 +107,7 @@ $(document).ready(function () {
         const option = $('<option>');
         // set values and content to the appropriate course attributes
         option.val(course.id);
+        console.log(option.val(course.id));
         option.text(course.display);
         $('#course').append(option);
       });
@@ -127,7 +129,7 @@ $(document).ready(function () {
     if (!/^\d+$/.test(event.target.value)) {
       event.target.value = event.target.value.replace(/[^\d]/g, '');
     }
-    console.log($('#course').val());
+    console.log(`course values: ${$('#course').val()}`);
     // When character length reaches 8 and it's only digits, fire off an AJAX request
     if (event.target.value.length === 8) {
       // capture passed courseId and uvuId
@@ -168,6 +170,7 @@ $(document).ready(function () {
               $('#uvuIdDisplay').removeClass('d-none');
               $('#uvuIdDisplay').addClass('pt-8 text-white font-[RajdSemi]');
               $('#uvuIdDisplay').show();
+              $('#addLog, #logEntry').show();
               $('#uvuIdDisplay').html(`Student Logs for ${log.uvuId}`);
               // Create a new list item
               const logItem = $(`<li>`);
@@ -194,7 +197,7 @@ $(document).ready(function () {
               'rounded p-2 bg-gray-100 border-2 border-solid block'
             );
             $('div small').addClass(
-              'rounded text-base font-medium border-x-gray-300'
+              'rounded text-base font-medium border-[#6f937a]'
             );
             $('pre').addClass(
               'rounded font-sans border-solid border-inherit whitespace-pre-wrap'
@@ -206,7 +209,7 @@ $(document).ready(function () {
             // display only log dates with on click event to view text entries list-items
             $('.log-entries li').click(function () {
               // text is queried from the <pre> -preformatted tag
-              $(this).find('pre').slideToggle();
+              $('.log-entries li').find('pre').slideToggle();
             });
 
             console.log(data);
@@ -274,8 +277,6 @@ $(document).ready(function () {
               return response.data;
             })
             .then((data) => {
-              // Display results
-              console.log(data);
               // Get the log entries container
               const logEntries = $('#logs');
               // Clear the container before appending new entries
