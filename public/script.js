@@ -26,17 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const toggleDarkMode = () => {
     darkMode = !darkMode;
     localStorage.setItem('darkMode', darkMode);
-    // if (darkMode) {
-    //   $('body').addClass(
-    //     `bg-[url('./img/UVUHorizontalGreen-0009.png')] bg-[#f2f9e9] text-white`
-    //   );
-    //   $('#form').addClass(
-    //     'bg-[#6f937a] bg-cover bg-top bg-[length:400px_150px]'
-    //   );
-    // } else {
-    //   $('body').removeClass('bg-[url(`./img/UVUHorizontalWhite-0011.png`)]');
-    //   $('#form').removeClass('bg-[#275D38]');
-    // }
+
     console.log(`User Pref: ${darkMode ? 'Light mode' : 'Dark mode'}`);
     console.log(
       `Browser Pref: ${
@@ -98,6 +88,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // Dynamically display data within form>select elements
 
   axios
+    // call to populate select element
     .get(
       'https://jsonserverpazgcu-umxz--3000.local-credentialless.webcontainer.io/api/v1/courses'
     )
@@ -129,15 +120,15 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!/^\d+$/.test(event.target.value)) {
       event.target.value = event.target.value.replace(/[^\d]/g, '');
     }
-    console.log(`course values: ${$('#course').val()}`);
+
     // When character length reaches 8 and it's only digits, fire off an AJAX request
     if (event.target.value.length === 8) {
       // capture passed courseId and uvuId
       const courseId = $('#course').val();
-      console.log(`couseId is ${courseId}`);
       const uvuId = event.target.value;
-      console.log(`uvuId is ${uvuId}`);
+
       axios
+        // call to populate log entries
         .get(
           `
           https://jsonserverpazgcu-umxz--3000.local-credentialless.webcontainer.io/api/v1/logs?coursId=${courseId}&uvuId=${uvuId}`
@@ -157,8 +148,6 @@ document.addEventListener('DOMContentLoaded', function () {
             // ensures response data reflects only records where a course log has been made under
             // the appropriate uvuId
           } else if (data.find((obj) => obj.courseId === courseId)) {
-            // Display results
-            console.log(data[0]);
             // Get the log entries container
             const logEntries = $('#logs');
             // Clear the container before appending new entries
@@ -211,8 +200,6 @@ document.addEventListener('DOMContentLoaded', function () {
               // text is queried from the <pre> -preformatted tag
               $('.log-entries li').find('pre').slideToggle();
             });
-
-            console.log(data);
           } else {
             throw new Error(
               `No Course Logs could be found for ${courseId} Course under the uvuid ${uvuId}`
@@ -258,17 +245,17 @@ document.addEventListener('DOMContentLoaded', function () {
       // Do something with the input (e.g. send it to a server via Axios)
       // Send the POST request, GEt to repopulate log entry list
       axios
+        // insert new log entry to server json object
         .post(
           'https://jsonserverpazgcu-umxz--3000.local-credentialless.webcontainer.io/api/v1/logs',
           entry
         )
         .then((data) => {
-          console.log(data);
-          //const courseId = $('#course').val();
           const courseId = $('#course').val();
           const uvuId = event.target.value;
 
           axios
+            // call to re-populate log with new entries
             .get(
               `
           https://jsonserverpazgcu-umxz--3000.local-credentialless.webcontainer.io/api/v1/logs?courseId=${courseId}&uvuId=${uvuId}`
